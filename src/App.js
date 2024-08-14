@@ -112,7 +112,8 @@ export default function Game() {
               {description}
             </button>
             <span style={{ marginLeft: "10px" }}>
-              Position: [row: {position[move][0]}, col: {position[move][1]}]
+              Position: [row: {position[move] ? position[move][0] : "-"}, col:{" "}
+              {position[move] ? position[move][1] : "-"}]
             </span>
           </>
         )}
