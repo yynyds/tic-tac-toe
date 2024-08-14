@@ -70,7 +70,7 @@ export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const [isSort, setIsSort] = useState(false);
-  const [position, setPosition] = useState([0, 0]);
+  const [position, setPosition] = useState([]);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
@@ -78,10 +78,12 @@ export default function Game() {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
-    setPosition([
+    const newPosition = position;
+    newPosition.push([
       Math.floor(positionClick / 3 + 1),
       Math.floor((positionClick % 3) + 1),
     ]);
+    setPosition(newPosition);
   }
 
   function jumpTo(nextMove) {
@@ -110,7 +112,7 @@ export default function Game() {
               {description}
             </button>
             <span style={{ marginLeft: "10px" }}>
-              Position: [row: {position[0]}, col: {position[1]}]
+              Position: [row: {position[move][0]}, col: {position[move][1]}]
             </span>
           </>
         )}
